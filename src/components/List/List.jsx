@@ -13,10 +13,9 @@ import PlaceDetails from './../PlaceDetails/PlaceDetails';
 import { useEffect } from 'react';
 import { createRef } from 'react';
 
-const List = ({ places, childClick, isLoading }) => {
+const List = ({ places, childClick, isLoading, type, setType, rating, setRating }) => {
   const classes = useStyles();
-  const [type, setType] = React.useState('restaurants');
-  const [rating, setRating] = React.useState('');
+
   const [elRefs, setElRefs] = React.useState([]);
 
   useEffect(() => {
@@ -53,10 +52,10 @@ const List = ({ places, childClick, isLoading }) => {
           </FormControl>
           <Grid container spacing={3} className={classes.list}>
             {places?.map((place, i) => (
-              <Grid item key={i} xs={12}>
+              <Grid ref={elRefs[i]} item key={i} xs={12}>
                 <PlaceDetails
                   place={place}
-                  selected={Number(childClick === i)}
+                  selected={Number(childClick) === i}
                   refProp={elRefs[i]}
                 />
               </Grid>

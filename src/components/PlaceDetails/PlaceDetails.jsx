@@ -17,8 +17,8 @@ import Rating from '@material-ui/lab/Rating';
 import useStyles from './styles';
 
 const PlaceDetails = ({ place, selected, refProp }) => {
-  if (selected)
-    refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (selected) refProp?.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    
   const classes = useStyles();
 
   return (
@@ -54,8 +54,9 @@ const PlaceDetails = ({ place, selected, refProp }) => {
             {place.ranking}
           </Typography>
         </Box>
-        {place?.awards?.map((award) => (
+        {place?.awards?.map((award, i) => (
           <Box
+            key={i}
             my={1}
             display="flex"
             justifyContent="space-between"
